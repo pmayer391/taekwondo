@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaekwonDoVC" customModule="TaekwonDo" customModuleProvider="target">
             <connections>
+                <outlet property="lblHeader" destination="jVg-l9-PIa" id="UGR-TR-f8x"/>
+                <outlet property="navBarView" destination="hnW-NR-YTb" id="jfG-3V-uNq"/>
+                <outlet property="taskTableView" destination="8kH-w3-it7" id="nKq-aT-oda"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,20 +29,50 @@
                         <constraint firstAttribute="height" constant="120" id="Gfz-kO-Ioe"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAf-q4-dTF">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="47"/>
+                    <color key="backgroundColor" name="tdGreen"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-l9-PIa">
+                    <rect key="frame" x="20" y="187" width="176.33333333333334" height="36"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                    <color key="textColor" name="basicText"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8kH-w3-it7">
+                    <rect key="frame" x="20" y="233" width="350" height="557"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="Background"/>
+            <color key="backgroundColor" name="background"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8kH-w3-it7" secondAttribute="bottom" constant="20" id="83d-ub-DyH"/>
+                <constraint firstAttribute="trailing" secondItem="zAf-q4-dTF" secondAttribute="trailing" id="Aln-gx-Sev"/>
+                <constraint firstItem="8kH-w3-it7" firstAttribute="top" secondItem="jVg-l9-PIa" secondAttribute="bottom" constant="10" id="ES6-0j-c78"/>
+                <constraint firstItem="zAf-q4-dTF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HYP-uY-eh4"/>
                 <constraint firstItem="hnW-NR-YTb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Odm-jX-3wc"/>
+                <constraint firstItem="zAf-q4-dTF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Olu-33-of6"/>
+                <constraint firstItem="jVg-l9-PIa" firstAttribute="top" secondItem="hnW-NR-YTb" secondAttribute="bottom" constant="20" id="Qgr-Nt-0Pa"/>
+                <constraint firstItem="8kH-w3-it7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WZn-ie-6aP"/>
+                <constraint firstItem="jVg-l9-PIa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WlC-hG-ZuP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8kH-w3-it7" secondAttribute="trailing" constant="20" id="jpC-bY-g9s"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hnW-NR-YTb" secondAttribute="trailing" id="pWS-AY-wRX"/>
                 <constraint firstItem="hnW-NR-YTb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qtJ-Ir-hoS"/>
+                <constraint firstItem="hnW-NR-YTb" firstAttribute="top" secondItem="zAf-q4-dTF" secondAttribute="bottom" id="vKT-ft-LS0"/>
             </constraints>
-            <point key="canvasLocation" x="63" y="41"/>
+            <point key="canvasLocation" x="61.538461538461533" y="40.521327014218009"/>
         </view>
     </objects>
     <resources>
-        <namedColor name="Background">
-            <color red="0.40927907146474041" green="0.40927907146474041" blue="0.40927907146474041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="background">
+            <color red="0.40900000929832458" green="0.40900000929832458" blue="0.40900000929832458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="basicText">
+            <color red="0.77799999713897705" green="0.77799999713897705" blue="0.77799999713897705" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="tdGreen">
+            <color red="0.030999999493360519" green="0.45899999141693115" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

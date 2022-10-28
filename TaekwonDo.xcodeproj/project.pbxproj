@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A1E290B027F008C88A9 /* TDUIView.swift */; };
+		2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A20290B0693008C88A9 /* DropDownView.swift */; };
+		2D9C4A28290B2803008C88A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9C4A26290B2802008C88A9 /* TaskCell.xib */; };
+		2D9C4A29290B2803008C88A9 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A27290B2803008C88A9 /* TaskCell.swift */; };
 		2D9F9C9B290A2EF800A12C25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9C9A290A2EF800A12C25 /* AppDelegate.swift */; };
 		2D9F9CA2290A2EF800A12C25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA0290A2EF800A12C25 /* Main.storyboard */; };
 		2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA3290A2EF800A12C25 /* TaekwonDo.xcdatamodeld */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D9C4A1E290B027F008C88A9 /* TDUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDUIView.swift; sourceTree = "<group>"; };
+		2D9C4A20290B0693008C88A9 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		2D9C4A26290B2802008C88A9 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		2D9C4A27290B2803008C88A9 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		2D9F9C97290A2EF800A12C25 /* TaekwonDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaekwonDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9F9C9A290A2EF800A12C25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D9F9CA1290A2EF800A12C25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +138,10 @@
 				2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */,
 				2D9F9CDB290A3C9F00A12C25 /* TDImageView.swift */,
 				2D9F9CDD290A3D7C00A12C25 /* TDColors.swift */,
+				2D9C4A1E290B027F008C88A9 /* TDUIView.swift */,
+				2D9C4A20290B0693008C88A9 /* DropDownView.swift */,
+				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
+				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
 			);
 			path = TaekwonDo;
 			sourceTree = "<group>";
@@ -257,6 +269,7 @@
 			files = (
 				2D9F9CDA290A3BE900A12C25 /* NavBarView.xib in Resources */,
 				2D9F9CAA290A2EFD00A12C25 /* LaunchScreen.storyboard in Resources */,
+				2D9C4A28290B2803008C88A9 /* TaskCell.xib in Resources */,
 				2D9F9CD2290A307300A12C25 /* MainVC.xib in Resources */,
 				2D9F9CA7290A2EFD00A12C25 /* Assets.xcassets in Resources */,
 				2D9F9CD6290A3A8500A12C25 /* TaekwonDoVC.xib in Resources */,
@@ -286,10 +299,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D9F9CDC290A3C9F00A12C25 /* TDImageView.swift in Sources */,
+				2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */,
 				2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */,
+				2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */,
 				2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */,
 				2D9F9CDE290A3D7C00A12C25 /* TDColors.swift in Sources */,
 				2D9F9C9B290A2EF800A12C25 /* AppDelegate.swift in Sources */,
+				2D9C4A29290B2803008C88A9 /* TaskCell.swift in Sources */,
 				2D9F9CD5290A3A8500A12C25 /* TaekwonDoVC.swift in Sources */,
 				2D9F9CD9290A3BE900A12C25 /* NavBarView.swift in Sources */,
 				2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */,

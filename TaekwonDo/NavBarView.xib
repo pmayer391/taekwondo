@@ -29,16 +29,16 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nc-iU-76N">
                     <rect key="frame" x="0.0" y="0.0" width="413" height="124"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TaekwonDo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-X7-FH7">
-                            <rect key="frame" x="144" y="47.5" width="125" height="29"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Taekwon Do" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBJ-X7-FH7">
+                            <rect key="frame" x="141.5" y="47.5" width="130" height="29"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="primaryText"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIx-9R-VPc">
-                            <rect key="frame" x="348" y="33.5" width="55" height="57"/>
+                            <rect key="frame" x="338" y="33.5" width="55" height="57"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add IIem" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw0-kr-NJt">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Task" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uw0-kr-NJt">
                                     <rect key="frame" x="0.0" y="43.5" width="55" height="13.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -81,7 +81,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWb-bB-HpR">
-                            <rect key="frame" x="10" y="39.5" width="55" height="45"/>
+                            <rect key="frame" x="20" y="39.5" width="55" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show By" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eq-55-VmZ">
                                     <rect key="frame" x="0.0" y="31.5" width="55" height="13.5"/>
@@ -126,15 +126,15 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="Background"/>
+                    <color key="backgroundColor" name="tdGreen"/>
                     <constraints>
                         <constraint firstItem="LIx-9R-VPc" firstAttribute="centerY" secondItem="1nc-iU-76N" secondAttribute="centerY" id="2mH-aP-Zh2"/>
                         <constraint firstItem="CBJ-X7-FH7" firstAttribute="centerY" secondItem="1nc-iU-76N" secondAttribute="centerY" id="6dd-w2-ubF"/>
-                        <constraint firstAttribute="trailing" secondItem="LIx-9R-VPc" secondAttribute="trailing" constant="10" id="CEl-Ae-B8B"/>
+                        <constraint firstAttribute="trailing" secondItem="LIx-9R-VPc" secondAttribute="trailing" constant="20" id="CEl-Ae-B8B"/>
                         <constraint firstItem="CBJ-X7-FH7" firstAttribute="centerX" secondItem="1nc-iU-76N" secondAttribute="centerX" id="FJk-yy-oex"/>
                         <constraint firstItem="GWb-bB-HpR" firstAttribute="centerY" secondItem="1nc-iU-76N" secondAttribute="centerY" id="O0u-6r-PlA"/>
                         <constraint firstItem="CBJ-X7-FH7" firstAttribute="centerX" secondItem="1nc-iU-76N" secondAttribute="centerX" id="ype-gV-bvn"/>
-                        <constraint firstItem="GWb-bB-HpR" firstAttribute="leading" secondItem="1nc-iU-76N" secondAttribute="leading" constant="10" id="zHo-yU-QSt"/>
+                        <constraint firstItem="GWb-bB-HpR" firstAttribute="leading" secondItem="1nc-iU-76N" secondAttribute="leading" constant="20" id="zHo-yU-QSt"/>
                     </constraints>
                 </view>
             </subviews>
@@ -152,11 +152,22 @@
             <point key="canvasLocation" x="255.79710144927537" y="-18.080357142857142"/>
         </view>
     </objects>
+    <designables>
+        <designable name="Ekl-fi-IVC">
+            <size key="intrinsicContentSize" width="50" height="50"/>
+        </designable>
+        <designable name="LJh-nO-yjq">
+            <size key="intrinsicContentSize" width="50" height="35"/>
+        </designable>
+    </designables>
     <resources>
         <image name="plusCircle" width="50" height="50"/>
         <image name="sortIcon" width="50" height="35"/>
-        <namedColor name="Background">
-            <color red="0.40927907146474041" green="0.40927907146474041" blue="0.40927907146474041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="primaryText">
+            <color red="0.93599998950958252" green="0.93599998950958252" blue="0.93599998950958252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="tdGreen">
+            <color red="0.030999999493360519" green="0.45899999141693115" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

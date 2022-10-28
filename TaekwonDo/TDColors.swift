@@ -29,4 +29,8 @@ extension UIColor {
     class func Gold() -> UIColor{
         return UIColor(rgb: 0xE2CA54)
     }
+    
+    class func PrimaryTextGray() -> UIColor{
+        return UIColor(rgb: 0xE2CA54)
+    }
 }

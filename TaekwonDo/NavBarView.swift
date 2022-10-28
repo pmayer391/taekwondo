@@ -45,9 +45,11 @@ class NavBarView : UIView{
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imgSort.image = imgSort.image?.withRenderingMode(.alwaysTemplate)
-        imgAddItem.tintColor = .white
+        imgAddItem.tintColor = UIColor(named: "primaryText")
+        lblAddItem.textColor = UIColor(named: "primaryText")
         imgSort.image = imgSort.image?.withRenderingMode(.alwaysTemplate)
-        imgSort.tintColor = .white
+        imgSort.tintColor = UIColor(named: "primaryText")
+        lblSort.textColor = UIColor(named: "primaryText")
     }
     
 }

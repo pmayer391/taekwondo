@@ -21,6 +21,14 @@ class MainVC: UIViewController {
         UIApplication.shared.statusBarFrame.height
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if traitCollection.userInterfaceStyle == .light{
+            return .lightContent
+        } else {
+            return .darkContent
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
