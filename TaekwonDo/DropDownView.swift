@@ -311,7 +311,6 @@ class DropDownView: UIViewController, UITableViewDelegate, UITableViewDataSource
         tvPopUp.reloadData()
     }
     
-    
     //MARK: - Animation Functions
     func showOnLoadAnimation(){
         switch animationDirection {

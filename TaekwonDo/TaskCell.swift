@@ -10,7 +10,7 @@ import UIKit
 protocol TaskCellDelegate{
     func didTapOnEdit(task: TaekwonTask)
     func didTapOnCopy(task: TaekwonTask)
-    func didTapOnDelete(task: TaekwonTask)
+    func didTapOnDelete(task: TaekwonTask, indexPath: IndexPath)
 }
 
 class TaskCell: UITableViewCell {
@@ -23,13 +23,15 @@ class TaskCell: UITableViewCell {
     
     var taskCellDelegate: TaskCellDelegate?
     var currentTask: TaekwonTask!
+    var currentIndexPath: IndexPath!
     
-    func configureCell(_ task: TaekwonTask, delegate: TaskCellDelegate?){
+    func configureCell(_ task: TaekwonTask,_ indexPath: IndexPath, delegate: TaskCellDelegate?){
         currentTask = task
         taskCellDelegate = delegate
         lblTitle.text = task.title
         lblSubtitle.text = task.description
         updateCellStatus(task: task)
+        currentIndexPath = indexPath
     }
     
     func updateCellStatus(task: TaekwonTask){
@@ -75,7 +77,7 @@ class TaskCell: UITableViewCell {
     
     @IBAction func deleteBtnPressed(_ sender: Any) {
         if let delegate = self.taskCellDelegate{
-            delegate.didTapOnDelete(task: currentTask)
+            delegate.didTapOnDelete(task: currentTask, indexPath: currentIndexPath)
         }
     }
 }

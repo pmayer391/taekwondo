@@ -18,10 +18,12 @@ class TaekwonTask {
 }
 
 class TaekwonDoVC: UIViewController {
-
+    
     @IBOutlet weak var navBarView: NavBarView!
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var taskTableView: UITableView!
+    @IBOutlet weak var emptyTaskListView: UIView!
+    
     private var allTasks: [TaekwonTask] = []
     
     enum SortOption: String{
@@ -40,15 +42,9 @@ class TaekwonDoVC: UIViewController {
         taskTableView.dataSource = self
         taskTableView.register(UINib(nibName: "TaskCell", bundle: .main), forCellReuseIdentifier: "TaskCell")
         taskTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
-
-        
-        for i in 0...100{
-            let mockData = TaekwonTask()
-            mockData.title = "This is a test title that is really really really long"
-            mockData.description = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWA"
-            mockData.title = "\(i) \(mockData.title)"
-            allTasks.append(mockData)
-        }
+        navBarView.btnSort.addTarget(self, action: #selector(sortBtnPressed(_:)), for: .touchUpInside)
+        navBarView.btnAddItem.addTarget(self, action: #selector(addTaskBtnPressed(_:)), for: .touchUpInside)
+        determineShowingEmptyTaskView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -57,6 +53,15 @@ class TaekwonDoVC: UIViewController {
         } else {
             return .darkContent
         }
+    }
+    
+    //MARK: - Actions
+    @objc func addTaskBtnPressed(_ sender: Any){
+        showTaskDetailsView(.new)
+    }
+    
+    @objc func sortBtnPressed(_ sender: Any){
+        
     }
     
 //    //MARK: - Sort Functions
@@ -99,6 +104,26 @@ class TaekwonDoVC: UIViewController {
 //        }
 //    }
 
+    //MARK: - Navigation Functions
+    func showTaskDetailsView(_ taskType: TaskType, _ task: TaekwonTask? = nil){
+        let detailsView = DetailsView()
+        detailsView.currentTask = task
+        detailsView.currentTaskType = taskType
+        detailsView.delegate = self
+        detailsView.frame = self.view.bounds
+        self.view.addSubview(detailsView)
+        detailsView.showViewWithAnimation()
+    }
+    
+    func determineShowingEmptyTaskView(){
+        if allTasks.isEmpty{
+            taskTableView.isHidden = true
+            emptyTaskListView.isHidden = false
+        } else {
+            taskTableView.isHidden = false
+            emptyTaskListView.isHidden = true
+        }
+    }
 }
 
 // MARK: - TableView Delegate and Data Methods
@@ -106,60 +131,47 @@ extension TaekwonDoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allTasks.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-//        cell.backgroundColor = UIColor.clear
-        cell.configureCell(allTasks[indexPath.row], delegate: self)
+        cell.configureCell(allTasks[indexPath.row], indexPath, delegate: self)
         cell.selectionStyle = .none
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-        let task = allTasks[indexPath.row]
-        if task.cellExpanded{
-            return 200
-        }
-        return 65
+        return UITableView.automaticDimension
     }
-
-//    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-//        return false
-//    }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-//        cell.didSelectCell()
-//        tableView.deselectRow(at: indexPath, animated: true)
         let task = allTasks[indexPath.row]
         task.cellExpanded = !task.cellExpanded
-//        tableView.reloadData()
         tableView.reloadRows(at: [indexPath], with: .automatic)
-//        tableView.deselectRow(at: indexPath, animated: false)
-//        processSelectedValue(selectedIndexPath: indexPath)
     }
-//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-////        tableView.deselectRow(at: indexPath, animated: true)
-//        return indexPath
-//    }
-
 }
 
 extension TaekwonDoVC: TaskCellDelegate{
     func didTapOnEdit(task: TaekwonTask) {
-        print("Edit")
+        showTaskDetailsView(.edit, task)
     }
     
     func didTapOnCopy(task: TaekwonTask) {
-        print("Copy")
+        showTaskDetailsView(.copy, task)
     }
     
-    func didTapOnDelete(task: TaekwonTask) {
-        print("Delete")
+    func didTapOnDelete(task: TaekwonTask, indexPath: IndexPath) {
+        let alertVC = UIAlertController(title: "Delete Task", message: "Are you sure you would like to\n permanently remove this task?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            guard let strong = self else {return}
+            strong.allTasks.remove(at: indexPath.row)
+            strong.determineShowingEmptyTaskView()
+            strong.taskTableView.reloadData()
+        }
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(deleteAction)
+        self.navigationController?.present(alertVC, animated: true)
     }
-    
-    
 }
 
 
@@ -201,3 +213,19 @@ extension TaekwonDoVC: TaskCellDelegate{
 //        }
 //    }
 //}
+
+extension TaekwonDoVC: DetailsViewDelegate{
+    func saveNewTask(task: TaekwonTask) {
+        self.allTasks.append(task)
+        self.taskTableView.reloadData()
+        self.determineShowingEmptyTaskView()
+    }
+    
+    func editNewTask(task: TaekwonTask) {
+        self.taskTableView.reloadData()
+    }
+    
+    func detailsViewDismissed() {
+        self.view.isUserInteractionEnabled = true
+    }
+}

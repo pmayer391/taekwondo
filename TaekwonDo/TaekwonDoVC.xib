@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaekwonDoVC" customModule="TaekwonDo" customModuleProvider="target">
             <connections>
+                <outlet property="emptyTaskListView" destination="gC8-5Y-XsW" id="cxC-eY-5jx"/>
                 <outlet property="lblHeader" destination="jVg-l9-PIa" id="UGR-TR-f8x"/>
                 <outlet property="navBarView" destination="hnW-NR-YTb" id="jfG-3V-uNq"/>
                 <outlet property="taskTableView" destination="8kH-w3-it7" id="nKq-aT-oda"/>
@@ -39,32 +41,69 @@
                     <color key="textColor" name="basicText"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8kH-w3-it7">
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8kH-w3-it7">
                     <rect key="frame" x="20" y="233" width="350" height="557"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gC8-5Y-XsW">
+                    <rect key="frame" x="0.0" y="223" width="390" height="587"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jIL-YV-esS">
+                            <rect key="frame" x="45.666666666666657" y="218.66666666666669" width="299" height="149.66666666666669"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Task List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jda-Oe-nmw">
+                                    <rect key="frame" x="0.0" y="0.0" width="299" height="34.666666666666664"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="29"/>
+                                    <color key="textColor" name="basicText"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nVT-3T-ANY">
+                                    <rect key="frame" x="0.0" y="44.333333333333293" width="299" height="109.66666666666666"/>
+                                    <color key="tintColor" name="basicText"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="100" id="JC5-Pf-yyR"/>
+                                    </constraints>
+                                    <imageReference key="image" image="list.bullet.clipboard" catalog="system" symbolScale="large"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="299" id="wne-Eu-XUr"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="jIL-YV-esS" firstAttribute="centerX" secondItem="gC8-5Y-XsW" secondAttribute="centerX" id="BAD-bM-jtg"/>
+                        <constraint firstItem="jIL-YV-esS" firstAttribute="centerY" secondItem="gC8-5Y-XsW" secondAttribute="centerY" id="hbS-ht-GO1"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="background"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gC8-5Y-XsW" secondAttribute="trailing" id="6ib-3o-rkk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8kH-w3-it7" secondAttribute="bottom" constant="20" id="83d-ub-DyH"/>
                 <constraint firstAttribute="trailing" secondItem="zAf-q4-dTF" secondAttribute="trailing" id="Aln-gx-Sev"/>
                 <constraint firstItem="8kH-w3-it7" firstAttribute="top" secondItem="jVg-l9-PIa" secondAttribute="bottom" constant="10" id="ES6-0j-c78"/>
                 <constraint firstItem="zAf-q4-dTF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HYP-uY-eh4"/>
                 <constraint firstItem="hnW-NR-YTb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Odm-jX-3wc"/>
                 <constraint firstItem="zAf-q4-dTF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Olu-33-of6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="gC8-5Y-XsW" secondAttribute="bottom" id="Ozi-We-7Lb"/>
                 <constraint firstItem="jVg-l9-PIa" firstAttribute="top" secondItem="hnW-NR-YTb" secondAttribute="bottom" constant="20" id="Qgr-Nt-0Pa"/>
                 <constraint firstItem="8kH-w3-it7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WZn-ie-6aP"/>
                 <constraint firstItem="jVg-l9-PIa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WlC-hG-ZuP"/>
+                <constraint firstItem="gC8-5Y-XsW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="eiL-Bf-8S3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8kH-w3-it7" secondAttribute="trailing" constant="20" id="jpC-bY-g9s"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hnW-NR-YTb" secondAttribute="trailing" id="pWS-AY-wRX"/>
                 <constraint firstItem="hnW-NR-YTb" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qtJ-Ir-hoS"/>
                 <constraint firstItem="hnW-NR-YTb" firstAttribute="top" secondItem="zAf-q4-dTF" secondAttribute="bottom" id="vKT-ft-LS0"/>
+                <constraint firstItem="gC8-5Y-XsW" firstAttribute="top" secondItem="jVg-l9-PIa" secondAttribute="bottom" id="y67-b8-FPd"/>
             </constraints>
             <point key="canvasLocation" x="61.538461538461533" y="40.521327014218009"/>
         </view>
     </objects>
     <resources>
+        <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <namedColor name="background">
             <color red="0.40900000929832458" green="0.40900000929832458" blue="0.40900000929832458" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

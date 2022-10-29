@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892B1D290C259A0073D3E5 /* DetailsView.swift */; };
+		2D892B20290C25E40073D3E5 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D892B1F290C25E40073D3E5 /* DetailsView.xib */; };
 		2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A1E290B027F008C88A9 /* TDUIView.swift */; };
 		2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A20290B0693008C88A9 /* DropDownView.swift */; };
 		2D9C4A28290B2803008C88A9 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9C4A26290B2802008C88A9 /* TaskCell.xib */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D892B1D290C259A0073D3E5 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		2D892B1F290C25E40073D3E5 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
 		2D9C4A1E290B027F008C88A9 /* TDUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDUIView.swift; sourceTree = "<group>"; };
 		2D9C4A20290B0693008C88A9 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		2D9C4A26290B2802008C88A9 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				2D9C4A20290B0693008C88A9 /* DropDownView.swift */,
 				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
 				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
+				2D892B1D290C259A0073D3E5 /* DetailsView.swift */,
+				2D892B1F290C25E40073D3E5 /* DetailsView.xib */,
 			);
 			path = TaekwonDo;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 				2D9F9CA7290A2EFD00A12C25 /* Assets.xcassets in Resources */,
 				2D9F9CD6290A3A8500A12C25 /* TaekwonDoVC.xib in Resources */,
 				2D9F9CA2290A2EF800A12C25 /* Main.storyboard in Resources */,
+				2D892B20290C25E40073D3E5 /* DetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +313,7 @@
 				2D9F9CDE290A3D7C00A12C25 /* TDColors.swift in Sources */,
 				2D9F9C9B290A2EF800A12C25 /* AppDelegate.swift in Sources */,
 				2D9C4A29290B2803008C88A9 /* TaskCell.swift in Sources */,
+				2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */,
 				2D9F9CD5290A3A8500A12C25 /* TaekwonDoVC.swift in Sources */,
 				2D9F9CD9290A3BE900A12C25 /* NavBarView.swift in Sources */,
 				2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */,
@@ -491,8 +499,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,8 +527,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
