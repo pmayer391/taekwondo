@@ -25,8 +25,8 @@ class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         titleContainer.alpha = 0
-        topPadding = UIApplication.shared.keyWindow?.safeAreaInsets.top ?? 0.0 +
-        UIApplication.shared.statusBarFrame.height
+        let keyWindow = UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }.first { $0.isKeyWindow }
+        topPadding = (keyWindow?.safeAreaInsets.top ?? 0.0)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

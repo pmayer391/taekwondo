@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TaekwonDoVC" customModule="TaekwonDo" customModuleProvider="target">
             <connections>
                 <outlet property="emptyTaskListView" destination="gC8-5Y-XsW" id="cxC-eY-5jx"/>
+                <outlet property="lblEmptyTitle" destination="Jda-Oe-nmw" id="UKZ-He-ojU"/>
                 <outlet property="lblHeader" destination="jVg-l9-PIa" id="UGR-TR-f8x"/>
                 <outlet property="navBarView" destination="hnW-NR-YTb" id="jfG-3V-uNq"/>
                 <outlet property="taskTableView" destination="8kH-w3-it7" id="nKq-aT-oda"/>
@@ -51,7 +52,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jIL-YV-esS">
                             <rect key="frame" x="45.666666666666657" y="218.66666666666669" width="299" height="149.66666666666669"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Task List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jda-Oe-nmw">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Task List" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jda-Oe-nmw">
                                     <rect key="frame" x="0.0" y="0.0" width="299" height="34.666666666666664"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="29"/>
                                     <color key="textColor" name="basicText"/>

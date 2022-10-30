@@ -13,15 +13,33 @@ class TaekwonDoVC: UIViewController {
     @IBOutlet weak var lblHeader: UILabel!
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var emptyTaskListView: UIView!
+    @IBOutlet weak var lblEmptyTitle: UILabel!
     
     var allTasks: [TaekwonTask] = []
+    var filteredTasks: [TaekwonTask] = []
+    var currentSortOption: SortOption = .RecentlyAdded
     
-    enum SortOption: String{
+    enum SortOption: String, CaseIterable{
         case RecentlyAdded = "Most Recent"
         case DueToday = "Due today"
         case Completed = "Completed"
         case Incomplete = "Incomplete"
         case PastDue = "Past Due"
+        
+        func emptyTaskListTitle() -> String{
+            switch self{
+            case .RecentlyAdded:
+                return "Empty Task List"
+            case .DueToday:
+                return "There Are No More Tasks For Today"
+            case .Completed:
+                return "No Tasks Have Been Finished"
+            case .Incomplete:
+                return "All Tasks Are Complete"
+            case .PastDue:
+                return "There Are No Past Due Tasks"
+            }
+        }
     }
     
     //MARK: - Override Functions
@@ -35,6 +53,7 @@ class TaekwonDoVC: UIViewController {
         navBarView.btnSort.addTarget(self, action: #selector(sortBtnPressed(_:)), for: .touchUpInside)
         navBarView.btnAddItem.addTarget(self, action: #selector(addTaskBtnPressed(_:)), for: .touchUpInside)
         showOrHideEmptyTaskView()
+        sortList()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -53,49 +72,52 @@ class TaekwonDoVC: UIViewController {
         showTaskDetailsView(.new)
     }
     
-    @objc func sortBtnPressed(_ sender: Any){
+    //MARK: - Sort Functions
+    @objc func sortBtnPressed(_ sender: UIButton){
+        let tintColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .black : .white
+        self.navBarView.imgSort.tintColor = tintColor
+        self.navBarView.lblSort.textColor = tintColor
         
+        if let navVC = self.navigationController{
+            let sourceView = sender.convert(sender.bounds, to: navVC.view)
+            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 45 * CGFloat(SortOption.allCases.count), bgColor: tintColor, cornerRadias: 12, autoDismiss: true, addShadow: true)
+            dropdown.delegate = self
+            dropdown.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            dropdown.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        navVC.present(dropdown, animated: false, completion: nil)
+        }
     }
     
-    //    //MARK: - Sort Functions
-    //    @objc func didTapOnSort(_ sender: UIButton){
-    //        if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? UINavigationController{
-    //            UIView.animate(withDuration: 0.1) {
-    //                self.navBar.imgSort.tintColor = .YellowLime()
-    //                self.navBar.lblSort.textColor = .YellowLime()
-    //            }
-    //            let sourceView = sender.convert(sender.bounds, to: topVC.view)
-    //            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 39 * CGFloat(sortList.count), xOffset: nil, yOffset: nil, arrowOffset: nil, bgColor: .DarkBlue(), cornerRadias: 12, autoDismiss: true, addShadow: true, borderWidth: nil, borderColor: nil, addCellSeparator: nil)
-    //            dropdown.delegate = self
-    //            dropdown.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-    //            dropdown.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-    //            topVC.present(dropdown, animated: false, completion: nil)
-    //        }
-    //    }
-    //
-    //    func setSortOption(){
-    //        switch currentSortOption {
-    //        case .Ascending:
-    //            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" < $1.name?.lowercased().trimmed ?? "" }
-    //        case .Decending:
-    //            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" > $1.name?.lowercased().trimmed ?? "" }
-    //        case .City:
-    //            networkList = networkList.sorted { $0.location?.city?.lowercased().trimmed ?? "" < $1.location?.city?.lowercased().trimmed ?? ""}
-    //        case .NearestCity:
-    //            let coodsTo = CLLocation(latitude: currentUserLocation?.coordinate.latitude ?? 0.0, longitude: currentUserLocation?.coordinate.longitude ?? 0.0)
-    //            for network in networkList{
-    //                let coordsFrom = CLLocation(latitude: network.location?.latitude ?? 0.0, longitude: network.location?.longitude ?? 0.0)
-    //                network.distanceFromDeviceLocation = coodsTo.distance(from: coordsFrom) // result is in meters
-    //            }
-    //            networkList = networkList.sorted { $0.distanceFromDeviceLocation ?? 0.0 < $1.distanceFromDeviceLocation ?? 0.0 }
-    //        }
-    //        DispatchQueue.main.async {
-    //            self.cityBikeTableView.reloadData()
-    //            if self.cityBikeTableView.numberOfRows(inSection: 0) != 0 {
-    //                self.cityBikeTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-    //            }
-    //        }
-    //    }
+    func sortList(){
+        lblHeader.text = currentSortOption.rawValue
+        filteredTasks = allTasks
+        switch currentSortOption{
+        case .RecentlyAdded:
+            filteredTasks = allTasks.sorted{$0.createdDate ?? Date() < $1.createdDate ?? Date()}
+        case .DueToday:
+            filteredTasks = allTasks.filter({
+                if let dueDate = $0.dueDate{
+                    return Calendar.current.isDateInToday(dueDate)
+                } else {
+                    return false
+                }
+            })
+        case .Completed:
+            filteredTasks = filteredTasks.filter({$0.taskCompleted})
+        case .Incomplete:
+            filteredTasks = filteredTasks.filter({!$0.taskCompleted})
+        case .PastDue:
+            filteredTasks = allTasks.filter({
+                if let dueDate = $0.dueDate, dueDate < Date(), !$0.taskCompleted{
+                    return true
+                } else {
+                    return false
+                }
+            })
+        }
+        taskTableView.reloadData()
+        showOrHideEmptyTaskView()
+    }
     
     //MARK: - Navigation Functions
     func showTaskDetailsView(_ taskType: TaskType, _ task: TaekwonTask? = nil){
@@ -109,6 +131,7 @@ class TaekwonDoVC: UIViewController {
     }
     
     func showOrHideEmptyTaskView(){
+        lblEmptyTitle.text = currentSortOption.emptyTaskListTitle()
         if allTasks.isEmpty{
             taskTableView.isHidden = true
             emptyTaskListView.isHidden = false
@@ -122,12 +145,12 @@ class TaekwonDoVC: UIViewController {
 // MARK: - TableView Delegate and Data Methods
 extension TaekwonDoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allTasks.count
+        return filteredTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-        cell.configureCell(allTasks[indexPath.row], indexPath, delegate: self)
+        cell.configureCell(filteredTasks[indexPath.row], indexPath, delegate: self)
         cell.selectionStyle = .none
         return cell
     }
@@ -137,12 +160,13 @@ extension TaekwonDoVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = allTasks[indexPath.row]
+        let task = filteredTasks[indexPath.row]
         task.cellExpanded = !task.cellExpanded
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
+//MARK: - Task Table View Cell Delegate
 extension TaekwonDoVC: TaskCellDelegate{
     func didTapOnEdit(task: TaekwonTask) {
         showTaskDetailsView(.edit, task)
@@ -158,7 +182,9 @@ extension TaekwonDoVC: TaskCellDelegate{
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let strong = self else {return}
             CoreDataController.shared.deleteTaskOnBackgroundThread(task)
-            strong.allTasks.remove(at: indexPath.row)
+            let removedTask = strong.filteredTasks.remove(at: indexPath.row)
+            strong.allTasks.removeAll(where: {$0.createdDate == removedTask.createdDate})
+            strong.sortList()
             strong.showOrHideEmptyTaskView()
             strong.taskTableView.reloadData()
         }
@@ -172,58 +198,21 @@ extension TaekwonDoVC: TaskCellDelegate{
     }
 }
 
-
-////MARK: - Drop Down Delegate
-//extension MainVC : DrowDownDelegate{
-//
-//    func tableViewPopup(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = UITableViewCell()
-//        let sortItem = sortList[indexPath.row]
-//        if sortItem == currentSortOption{
-//            cell.textLabel?.textColor = .YellowLime()
-//        } else {
-//            cell.textLabel?.textColor = .white
-//        }
-//        cell.contentView.backgroundColor = .DarkBlue()
-//        cell.textLabel?.text = sortItem.rawValue.capitalized
-//        cell.textLabel?.font = UIFont.systemFont(ofSize: 13)
-//        cell.textLabel?.textAlignment = .left
-//        return cell
-//    }
-//
-//    func tableViewPopup(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return sortList.count
-//    }
-//
-//    func tableViewPopup(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        currentSortOption = sortList[indexPath.row]
-//        setSortOption()
-//    }
-//
-//    func tableViewPopup(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 39
-//    }
-//
-//    func popupDismissed() {
-//        UIView.animate(withDuration: 0.1) {
-//            self.navBar.imgSort.tintColor = .white
-//            self.navBar.lblSort.textColor = .white
-//        }
-//    }
-//}
-
+//MARK: - Task Details View Delegate
 extension TaekwonDoVC: DetailsViewDelegate{
     func saveNewTask(task: TaekwonTask) {
         CoreDataController.shared.saveNewTaskOnBackgroundThread(task)
-        self.allTasks.append(task)
-        self.taskTableView.reloadData()
-        self.showOrHideEmptyTaskView()
+        allTasks.append(task)
+        sortList()
+        taskTableView.reloadData()
+        showOrHideEmptyTaskView()
         updateAddTaskBtn()
     }
     
     func editNewTask(task: TaekwonTask) {
         CoreDataController.shared.editTaskOnBackgroundThread(task)
-        self.taskTableView.reloadData()
+        sortList()
+        taskTableView.reloadData()
     }
     
     func detailsViewDismissed() {
@@ -232,7 +221,50 @@ extension TaekwonDoVC: DetailsViewDelegate{
     }
     
     private func updateAddTaskBtn(){
-        self.navBarView.imgAddItem.tintColor = UIColor(named: "primaryText")
-        self.navBarView.lblAddItem.textColor = UIColor(named: "primaryText")
+        navBarView.imgAddItem.tintColor = UIColor(named: "primaryText")
+        navBarView.lblAddItem.textColor = UIColor(named: "primaryText")
+    }
+}
+
+//MARK: - Drop Down Delegate
+extension TaekwonDoVC : DrowDownDelegate{
+    
+    func tableViewPopup(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        let sortItem = SortOption.allCases[indexPath.row]
+        let bgColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .black : .white
+        let tintColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .white : .black
+        let selectedColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? UIColor(named: "tdGold") ?? .yellow : UIColor(named: "tdBlue") ?? .blue
+        if sortItem == currentSortOption{
+            cell.textLabel?.textColor = selectedColor
+        } else {
+            cell.textLabel?.textColor = tintColor
+        }
+        cell.contentView.backgroundColor = bgColor
+        cell.textLabel?.text = sortItem.rawValue.capitalized
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        cell.textLabel?.textAlignment = .left
+        return cell
+    }
+    
+    func tableViewPopup(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return SortOption.allCases.count
+    }
+    
+    func tableViewPopup(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentSortOption = SortOption.allCases[indexPath.row]
+        sortList()
+    }
+    
+    func tableViewPopup(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    
+    func popupDismissed() {
+        let tintColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .white : .black
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.navBarView.imgSort.tintColor = tintColor
+            self?.navBarView.lblSort.textColor = tintColor
+        }
     }
 }
