@@ -52,8 +52,8 @@ class TaekwonDoVC: UIViewController {
         taskTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         navBarView.btnSort.addTarget(self, action: #selector(sortBtnPressed(_:)), for: .touchUpInside)
         navBarView.btnAddItem.addTarget(self, action: #selector(addTaskBtnPressed(_:)), for: .touchUpInside)
-        showOrHideEmptyTaskView()
         sortList()
+        showOrHideEmptyTaskView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
