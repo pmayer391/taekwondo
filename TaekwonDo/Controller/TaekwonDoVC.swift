@@ -21,7 +21,7 @@ class TaekwonDoVC: UIViewController {
     
     enum SortOption: String, CaseIterable{
         case RecentlyAdded = "Most Recent"
-        case DueToday = "Due today"
+        case DueToday = "Due Today"
         case Completed = "Completed"
         case Incomplete = "Incomplete"
         case PastDue = "Past Due"
@@ -53,7 +53,6 @@ class TaekwonDoVC: UIViewController {
         navBarView.btnSort.addTarget(self, action: #selector(sortBtnPressed(_:)), for: .touchUpInside)
         navBarView.btnAddItem.addTarget(self, action: #selector(addTaskBtnPressed(_:)), for: .touchUpInside)
         sortList()
-        showOrHideEmptyTaskView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -93,7 +92,7 @@ class TaekwonDoVC: UIViewController {
         filteredTasks = allTasks
         switch currentSortOption{
         case .RecentlyAdded:
-            filteredTasks = allTasks.sorted{$0.createdDate ?? Date() < $1.createdDate ?? Date()}
+            filteredTasks = allTasks.sorted{$0.createdDate ?? Date() > $1.createdDate ?? Date()}
         case .DueToday:
             filteredTasks = allTasks.filter({
                 if let dueDate = $0.dueDate{
@@ -108,7 +107,8 @@ class TaekwonDoVC: UIViewController {
             filteredTasks = filteredTasks.filter({!$0.taskCompleted})
         case .PastDue:
             filteredTasks = allTasks.filter({
-                if let dueDate = $0.dueDate, dueDate < Date(), !$0.taskCompleted{
+                let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
+                if let dueDate = $0.dueDate, dueDate > nextDay, !$0.taskCompleted{
                     return true
                 } else {
                     return false
@@ -132,7 +132,7 @@ class TaekwonDoVC: UIViewController {
     
     func showOrHideEmptyTaskView(){
         lblEmptyTitle.text = currentSortOption.emptyTaskListTitle()
-        if allTasks.isEmpty{
+        if filteredTasks.isEmpty{
             taskTableView.isHidden = true
             emptyTaskListView.isHidden = false
         } else {
@@ -185,7 +185,6 @@ extension TaekwonDoVC: TaskCellDelegate{
             let removedTask = strong.filteredTasks.remove(at: indexPath.row)
             strong.allTasks.removeAll(where: {$0.createdDate == removedTask.createdDate})
             strong.sortList()
-            strong.showOrHideEmptyTaskView()
             strong.taskTableView.reloadData()
         }
         alertVC.addAction(cancelAction)
@@ -195,6 +194,7 @@ extension TaekwonDoVC: TaskCellDelegate{
     
     func didTapOnCompleteBtn(task: TaekwonTask) {
         CoreDataController.shared.editTaskOnBackgroundThread(task)
+        sortList()
     }
 }
 
@@ -205,7 +205,6 @@ extension TaekwonDoVC: DetailsViewDelegate{
         allTasks.append(task)
         sortList()
         taskTableView.reloadData()
-        showOrHideEmptyTaskView()
         updateAddTaskBtn()
     }
     
