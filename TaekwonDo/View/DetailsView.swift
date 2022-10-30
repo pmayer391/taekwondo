@@ -92,6 +92,7 @@ class DetailsView: UIView{
         datePicker.preferredDatePickerStyle = .inline
         datePicker.minimumDate = Date()
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        dueDateTextField.addTarget(self, action: #selector(dueDateGainFocus(_:)), for: .touchDown)
         dueDateTextField.inputView = datePicker
     }
     
@@ -101,17 +102,20 @@ class DetailsView: UIView{
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        let dueDate = dateFormatter.date(from: dueDateTextField.text ?? "")
         if currentTaskType != .edit{
             let newTask = TaekwonTask()
             newTask.title = titleTextField.text ?? ""
             newTask.description = descriptionTextView.text
-            newTask.dueDate = !((dueDateTextField.text ?? "").isEmpty) ?  datePicker.date : nil
+            newTask.dueDate = !((dueDateTextField.text ?? "").isEmpty) && (dueDate != nil) ? datePicker.date : nil
             saveWithAnimation(task: newTask)
         } else {
             guard let currentTask = currentTask else {return}
             currentTask.title = titleTextField.text ?? ""
             currentTask.description = descriptionTextView.text
-            currentTask.dueDate = !((dueDateTextField.text ?? "").isEmpty) ?  datePicker.date : nil
+            currentTask.dueDate = !((dueDateTextField.text ?? "").isEmpty) && (dueDate != nil) ?  datePicker.date : nil
             saveWithAnimation(task: currentTask)
         }
     }
@@ -148,6 +152,12 @@ class DetailsView: UIView{
     
     @objc func dateChanged(_ sender: UIDatePicker) {
         displaySelectedDate(date: sender.date)
+    }
+    
+    @objc func dueDateGainFocus(_ sender: UIDatePicker){
+        if (dueDateTextField.text ?? "").isEmpty{
+            displaySelectedDate(date: Date())
+        }
     }
     
     //MARK: - Present & Dismiss view with animation

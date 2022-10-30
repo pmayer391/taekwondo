@@ -33,7 +33,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAf-q4-dTF">
                     <rect key="frame" x="0.0" y="0.0" width="390" height="47"/>
-                    <color key="backgroundColor" name="tdGreen"/>
+                    <color key="backgroundColor" name="tdBlue"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Most Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVg-l9-PIa">
                     <rect key="frame" x="20" y="187" width="176.33333333333334" height="36"/>
@@ -110,8 +110,8 @@
         <namedColor name="basicText">
             <color red="0.77799999713897705" green="0.77799999713897705" blue="0.77799999713897705" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="tdGreen">
-            <color red="0.030999999493360519" green="0.45899999141693115" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="tdBlue">
+            <color red="0.031372549019607843" green="0.49803921568627452" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -7,16 +7,6 @@
 
 import UIKit
 
-//TODO: replace with core data
-class TaekwonTask {
-    var createdDate: Date?
-    var title: String = ""
-    var description: String = ""
-    var dueDate: Date?
-    var cellExpanded = false
-    var taskCompleted = false
-}
-
 class TaekwonDoVC: UIViewController {
     
     @IBOutlet weak var navBarView: NavBarView!
@@ -57,6 +47,9 @@ class TaekwonDoVC: UIViewController {
     
     //MARK: - Actions
     @objc func addTaskBtnPressed(_ sender: Any){
+        let tintColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .black : .white
+        self.navBarView.imgAddItem.tintColor = tintColor
+        self.navBarView.lblAddItem.textColor = tintColor
         showTaskDetailsView(.new)
     }
     
@@ -64,46 +57,46 @@ class TaekwonDoVC: UIViewController {
         
     }
     
-//    //MARK: - Sort Functions
-//    @objc func didTapOnSort(_ sender: UIButton){
-//        if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? UINavigationController{
-//            UIView.animate(withDuration: 0.1) {
-//                self.navBar.imgSort.tintColor = .YellowLime()
-//                self.navBar.lblSort.textColor = .YellowLime()
-//            }
-//            let sourceView = sender.convert(sender.bounds, to: topVC.view)
-//            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 39 * CGFloat(sortList.count), xOffset: nil, yOffset: nil, arrowOffset: nil, bgColor: .DarkBlue(), cornerRadias: 12, autoDismiss: true, addShadow: true, borderWidth: nil, borderColor: nil, addCellSeparator: nil)
-//            dropdown.delegate = self
-//            dropdown.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-//            dropdown.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//            topVC.present(dropdown, animated: false, completion: nil)
-//        }
-//    }
-//
-//    func setSortOption(){
-//        switch currentSortOption {
-//        case .Ascending:
-//            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" < $1.name?.lowercased().trimmed ?? "" }
-//        case .Decending:
-//            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" > $1.name?.lowercased().trimmed ?? "" }
-//        case .City:
-//            networkList = networkList.sorted { $0.location?.city?.lowercased().trimmed ?? "" < $1.location?.city?.lowercased().trimmed ?? ""}
-//        case .NearestCity:
-//            let coodsTo = CLLocation(latitude: currentUserLocation?.coordinate.latitude ?? 0.0, longitude: currentUserLocation?.coordinate.longitude ?? 0.0)
-//            for network in networkList{
-//                let coordsFrom = CLLocation(latitude: network.location?.latitude ?? 0.0, longitude: network.location?.longitude ?? 0.0)
-//                network.distanceFromDeviceLocation = coodsTo.distance(from: coordsFrom) // result is in meters
-//            }
-//            networkList = networkList.sorted { $0.distanceFromDeviceLocation ?? 0.0 < $1.distanceFromDeviceLocation ?? 0.0 }
-//        }
-//        DispatchQueue.main.async {
-//            self.cityBikeTableView.reloadData()
-//            if self.cityBikeTableView.numberOfRows(inSection: 0) != 0 {
-//                self.cityBikeTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-//            }
-//        }
-//    }
-
+    //    //MARK: - Sort Functions
+    //    @objc func didTapOnSort(_ sender: UIButton){
+    //        if let topVC = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? UINavigationController{
+    //            UIView.animate(withDuration: 0.1) {
+    //                self.navBar.imgSort.tintColor = .YellowLime()
+    //                self.navBar.lblSort.textColor = .YellowLime()
+    //            }
+    //            let sourceView = sender.convert(sender.bounds, to: topVC.view)
+    //            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 39 * CGFloat(sortList.count), xOffset: nil, yOffset: nil, arrowOffset: nil, bgColor: .DarkBlue(), cornerRadias: 12, autoDismiss: true, addShadow: true, borderWidth: nil, borderColor: nil, addCellSeparator: nil)
+    //            dropdown.delegate = self
+    //            dropdown.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+    //            dropdown.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+    //            topVC.present(dropdown, animated: false, completion: nil)
+    //        }
+    //    }
+    //
+    //    func setSortOption(){
+    //        switch currentSortOption {
+    //        case .Ascending:
+    //            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" < $1.name?.lowercased().trimmed ?? "" }
+    //        case .Decending:
+    //            networkList = networkList.sorted { $0.name?.lowercased().trimmed ?? "" > $1.name?.lowercased().trimmed ?? "" }
+    //        case .City:
+    //            networkList = networkList.sorted { $0.location?.city?.lowercased().trimmed ?? "" < $1.location?.city?.lowercased().trimmed ?? ""}
+    //        case .NearestCity:
+    //            let coodsTo = CLLocation(latitude: currentUserLocation?.coordinate.latitude ?? 0.0, longitude: currentUserLocation?.coordinate.longitude ?? 0.0)
+    //            for network in networkList{
+    //                let coordsFrom = CLLocation(latitude: network.location?.latitude ?? 0.0, longitude: network.location?.longitude ?? 0.0)
+    //                network.distanceFromDeviceLocation = coodsTo.distance(from: coordsFrom) // result is in meters
+    //            }
+    //            networkList = networkList.sorted { $0.distanceFromDeviceLocation ?? 0.0 < $1.distanceFromDeviceLocation ?? 0.0 }
+    //        }
+    //        DispatchQueue.main.async {
+    //            self.cityBikeTableView.reloadData()
+    //            if self.cityBikeTableView.numberOfRows(inSection: 0) != 0 {
+    //                self.cityBikeTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    //            }
+    //        }
+    //    }
+    
     //MARK: - Navigation Functions
     func showTaskDetailsView(_ taskType: TaskType, _ task: TaekwonTask? = nil){
         let detailsView = DetailsView()
@@ -219,6 +212,7 @@ extension TaekwonDoVC: DetailsViewDelegate{
         self.allTasks.append(task)
         self.taskTableView.reloadData()
         self.determineShowingEmptyTaskView()
+        updateAddTaskBtn()
     }
     
     func editNewTask(task: TaekwonTask) {
@@ -227,5 +221,11 @@ extension TaekwonDoVC: DetailsViewDelegate{
     
     func detailsViewDismissed() {
         self.view.isUserInteractionEnabled = true
+        updateAddTaskBtn()
+    }
+    
+    private func updateAddTaskBtn(){
+        self.navBarView.imgAddItem.tintColor = UIColor(named: "primaryText")
+        self.navBarView.lblAddItem.textColor = UIColor(named: "primaryText")
     }
 }

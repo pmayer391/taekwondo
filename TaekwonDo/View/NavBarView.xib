@@ -126,7 +126,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="tdGreen"/>
+                    <color key="backgroundColor" red="0.031372549019607843" green="0.49803921568627452" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="LIx-9R-VPc" firstAttribute="centerY" secondItem="1nc-iU-76N" secondAttribute="centerY" id="2mH-aP-Zh2"/>
                         <constraint firstItem="CBJ-X7-FH7" firstAttribute="centerY" secondItem="1nc-iU-76N" secondAttribute="centerY" id="6dd-w2-ubF"/>
@@ -165,9 +165,6 @@
         <image name="sortIcon" width="50" height="35"/>
         <namedColor name="primaryText">
             <color red="0.93599998950958252" green="0.93599998950958252" blue="0.93599998950958252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
-        <namedColor name="tdGreen">
-            <color red="0.030999999493360519" green="0.45899999141693115" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

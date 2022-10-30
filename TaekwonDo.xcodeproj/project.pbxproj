@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6FDDD9290DD543002080B1 /* TaekwonTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */; };
+		2D6FDDDC290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */; };
+		2D6FDDDD290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */; };
 		2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892B1D290C259A0073D3E5 /* DetailsView.swift */; };
 		2D892B20290C25E40073D3E5 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D892B1F290C25E40073D3E5 /* DetailsView.xib */; };
 		2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A1E290B027F008C88A9 /* TDUIView.swift */; };
@@ -19,8 +22,6 @@
 		2D9F9CA7290A2EFD00A12C25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA6290A2EFD00A12C25 /* Assets.xcassets */; };
 		2D9F9CAA290A2EFD00A12C25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA8290A2EFD00A12C25 /* LaunchScreen.storyboard */; };
 		2D9F9CB5290A2EFD00A12C25 /* TaekwonDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */; };
-		2D9F9CBF290A2EFD00A12C25 /* TaekwonDoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CBE290A2EFD00A12C25 /* TaekwonDoUITests.swift */; };
-		2D9F9CC1290A2EFD00A12C25 /* TaekwonDoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CC0290A2EFD00A12C25 /* TaekwonDoUITestsLaunchTests.swift */; };
 		2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CCD290A2FF000A12C25 /* NavController.swift */; };
 		2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CCF290A307300A12C25 /* MainVC.swift */; };
 		2D9F9CD2290A307300A12C25 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CD0290A307300A12C25 /* MainVC.xib */; };
@@ -50,6 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonTask.swift; sourceTree = "<group>"; };
+		2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D892B1D290C259A0073D3E5 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		2D892B1F290C25E40073D3E5 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
 		2D9C4A1E290B027F008C88A9 /* TDUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDUIView.swift; sourceTree = "<group>"; };
@@ -66,8 +70,6 @@
 		2D9F9CB0290A2EFD00A12C25 /* TaekwonDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaekwonDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonDoTests.swift; sourceTree = "<group>"; };
 		2D9F9CBA290A2EFD00A12C25 /* TaekwonDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaekwonDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D9F9CBE290A2EFD00A12C25 /* TaekwonDoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonDoUITests.swift; sourceTree = "<group>"; };
-		2D9F9CC0290A2EFD00A12C25 /* TaekwonDoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonDoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2D9F9CCD290A2FF000A12C25 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		2D9F9CCF290A307300A12C25 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		2D9F9CD0290A307300A12C25 /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
@@ -104,12 +106,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D6FDDDE290DD660002080B1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */,
+				2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */,
+				2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D6FDDDF290DD675002080B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2D9C4A20290B0693008C88A9 /* DropDownView.swift */,
+				2D9F9CD7290A3BE900A12C25 /* NavBarView.swift */,
+				2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */,
+				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
+				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
+				2D892B1D290C259A0073D3E5 /* DetailsView.swift */,
+				2D892B1F290C25E40073D3E5 /* DetailsView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2D6FDDE0290DD67C002080B1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2D9F9CCD290A2FF000A12C25 /* NavController.swift */,
+				2D9F9CCF290A307300A12C25 /* MainVC.swift */,
+				2D9F9CD0290A307300A12C25 /* MainVC.xib */,
+				2D9F9CD3290A3A8500A12C25 /* TaekwonDoVC.swift */,
+				2D9F9CD4290A3A8500A12C25 /* TaekwonDoVC.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2D6FDDE1290DD689002080B1 /* Subclass */ = {
+			isa = PBXGroup;
+			children = (
+				2D9F9CDB290A3C9F00A12C25 /* TDImageView.swift */,
+				2D9F9CDD290A3D7C00A12C25 /* TDColors.swift */,
+				2D9C4A1E290B027F008C88A9 /* TDUIView.swift */,
+			);
+			path = Subclass;
+			sourceTree = "<group>";
+		};
 		2D9F9C8E290A2EF800A12C25 = {
 			isa = PBXGroup;
 			children = (
 				2D9F9C99290A2EF800A12C25 /* TaekwonDo */,
 				2D9F9CB3290A2EFD00A12C25 /* TaekwonDoTests */,
-				2D9F9CBD290A2EFD00A12C25 /* TaekwonDoUITests */,
 				2D9F9C98290A2EF800A12C25 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -127,27 +174,16 @@
 		2D9F9C99290A2EF800A12C25 /* TaekwonDo */ = {
 			isa = PBXGroup;
 			children = (
+				2D6FDDDE290DD660002080B1 /* Model */,
+				2D6FDDDF290DD675002080B1 /* View */,
+				2D6FDDE0290DD67C002080B1 /* Controller */,
+				2D6FDDE1290DD689002080B1 /* Subclass */,
 				2D9F9C9A290A2EF800A12C25 /* AppDelegate.swift */,
 				2D9F9CA0290A2EF800A12C25 /* Main.storyboard */,
 				2D9F9CA6290A2EFD00A12C25 /* Assets.xcassets */,
 				2D9F9CA8290A2EFD00A12C25 /* LaunchScreen.storyboard */,
 				2D9F9CAB290A2EFD00A12C25 /* Info.plist */,
 				2D9F9CA3290A2EF800A12C25 /* TaekwonDo.xcdatamodeld */,
-				2D9F9CCD290A2FF000A12C25 /* NavController.swift */,
-				2D9F9CCF290A307300A12C25 /* MainVC.swift */,
-				2D9F9CD0290A307300A12C25 /* MainVC.xib */,
-				2D9F9CD3290A3A8500A12C25 /* TaekwonDoVC.swift */,
-				2D9F9CD4290A3A8500A12C25 /* TaekwonDoVC.xib */,
-				2D9F9CD7290A3BE900A12C25 /* NavBarView.swift */,
-				2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */,
-				2D9F9CDB290A3C9F00A12C25 /* TDImageView.swift */,
-				2D9F9CDD290A3D7C00A12C25 /* TDColors.swift */,
-				2D9C4A1E290B027F008C88A9 /* TDUIView.swift */,
-				2D9C4A20290B0693008C88A9 /* DropDownView.swift */,
-				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
-				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
-				2D892B1D290C259A0073D3E5 /* DetailsView.swift */,
-				2D892B1F290C25E40073D3E5 /* DetailsView.xib */,
 			);
 			path = TaekwonDo;
 			sourceTree = "<group>";
@@ -158,15 +194,6 @@
 				2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */,
 			);
 			path = TaekwonDoTests;
-			sourceTree = "<group>";
-		};
-		2D9F9CBD290A2EFD00A12C25 /* TaekwonDoUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2D9F9CBE290A2EFD00A12C25 /* TaekwonDoUITests.swift */,
-				2D9F9CC0290A2EFD00A12C25 /* TaekwonDoUITestsLaunchTests.swift */,
-			);
-			path = TaekwonDoUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,16 +334,19 @@
 			files = (
 				2D9F9CDC290A3C9F00A12C25 /* TDImageView.swift in Sources */,
 				2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */,
+				2D6FDDDD290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */,
 				2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */,
 				2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */,
 				2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */,
 				2D9F9CDE290A3D7C00A12C25 /* TDColors.swift in Sources */,
 				2D9F9C9B290A2EF800A12C25 /* AppDelegate.swift in Sources */,
 				2D9C4A29290B2803008C88A9 /* TaskCell.swift in Sources */,
+				2D6FDDD9290DD543002080B1 /* TaekwonTask.swift in Sources */,
 				2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */,
 				2D9F9CD5290A3A8500A12C25 /* TaekwonDoVC.swift in Sources */,
 				2D9F9CD9290A3BE900A12C25 /* NavBarView.swift in Sources */,
 				2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */,
+				2D6FDDDC290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +362,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9F9CBF290A2EFD00A12C25 /* TaekwonDoUITests.swift in Sources */,
-				2D9F9CC1290A2EFD00A12C25 /* TaekwonDoUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
