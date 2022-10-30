@@ -22,7 +22,6 @@
 		2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA3290A2EF800A12C25 /* TaekwonDo.xcdatamodeld */; };
 		2D9F9CA7290A2EFD00A12C25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA6290A2EFD00A12C25 /* Assets.xcassets */; };
 		2D9F9CAA290A2EFD00A12C25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CA8290A2EFD00A12C25 /* LaunchScreen.storyboard */; };
-		2D9F9CB5290A2EFD00A12C25 /* TaekwonDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */; };
 		2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CCD290A2FF000A12C25 /* NavController.swift */; };
 		2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CCF290A307300A12C25 /* MainVC.swift */; };
 		2D9F9CD2290A307300A12C25 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CD0290A307300A12C25 /* MainVC.xib */; };
@@ -70,7 +69,6 @@
 		2D9F9CA9290A2EFD00A12C25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D9F9CAB290A2EFD00A12C25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D9F9CB0290A2EFD00A12C25 /* TaekwonDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaekwonDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonDoTests.swift; sourceTree = "<group>"; };
 		2D9F9CBA290A2EFD00A12C25 /* TaekwonDoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaekwonDoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D9F9CCD290A2FF000A12C25 /* NavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		2D9F9CCF290A307300A12C25 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -159,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				2D9F9C99290A2EF800A12C25 /* TaekwonDo */,
-				2D9F9CB3290A2EFD00A12C25 /* TaekwonDoTests */,
 				2D9F9C98290A2EF800A12C25 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -189,14 +186,6 @@
 				2D9F9CA3290A2EF800A12C25 /* TaekwonDo.xcdatamodeld */,
 			);
 			path = TaekwonDo;
-			sourceTree = "<group>";
-		};
-		2D9F9CB3290A2EFD00A12C25 /* TaekwonDoTests */ = {
-			isa = PBXGroup;
-			children = (
-				2D9F9CB4290A2EFD00A12C25 /* TaekwonDoTests.swift */,
-			);
-			path = TaekwonDoTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,7 +347,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9F9CB5290A2EFD00A12C25 /* TaekwonDoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
