@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2D6FDDD9290DD543002080B1 /* TaekwonTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */; };
-		2D6FDDDC290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */; };
-		2D6FDDDD290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */; };
+		2D6FDDE3290E03F8002080B1 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDE2290E03F8002080B1 /* CoreDataController.swift */; };
+		2D6FDDE6290E15D4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDE4290E15D4002080B1 /* CDTaekwonTask+CoreDataClass.swift */; };
+		2D6FDDE7290E15D4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6FDDE5290E15D4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */; };
 		2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D892B1D290C259A0073D3E5 /* DetailsView.swift */; };
 		2D892B20290C25E40073D3E5 /* DetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D892B1F290C25E40073D3E5 /* DetailsView.xib */; };
 		2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9C4A1E290B027F008C88A9 /* TDUIView.swift */; };
@@ -52,8 +53,9 @@
 
 /* Begin PBXFileReference section */
 		2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonTask.swift; sourceTree = "<group>"; };
-		2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2D6FDDE2290E03F8002080B1 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		2D6FDDE4290E15D4002080B1 /* CDTaekwonTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2D6FDDE5290E15D4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTaekwonTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2D892B1D290C259A0073D3E5 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		2D892B1F290C25E40073D3E5 /* DetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsView.xib; sourceTree = "<group>"; };
 		2D9C4A1E290B027F008C88A9 /* TDUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDUIView.swift; sourceTree = "<group>"; };
@@ -110,8 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				2D6FDDD8290DD543002080B1 /* TaekwonTask.swift */,
-				2D6FDDDA290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift */,
-				2D6FDDDB290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */,
+				2D6FDDE4290E15D4002080B1 /* CDTaekwonTask+CoreDataClass.swift */,
+				2D6FDDE5290E15D4002080B1 /* CDTaekwonTask+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				2D9F9CCD290A2FF000A12C25 /* NavController.swift */,
+				2D6FDDE2290E03F8002080B1 /* CoreDataController.swift */,
 				2D9F9CCF290A307300A12C25 /* MainVC.swift */,
 				2D9F9CD0290A307300A12C25 /* MainVC.xib */,
 				2D9F9CD3290A3A8500A12C25 /* TaekwonDoVC.swift */,
@@ -334,7 +337,6 @@
 			files = (
 				2D9F9CDC290A3C9F00A12C25 /* TDImageView.swift in Sources */,
 				2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */,
-				2D6FDDDD290DD5F4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */,
 				2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */,
 				2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */,
 				2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */,
@@ -342,11 +344,13 @@
 				2D9F9C9B290A2EF800A12C25 /* AppDelegate.swift in Sources */,
 				2D9C4A29290B2803008C88A9 /* TaskCell.swift in Sources */,
 				2D6FDDD9290DD543002080B1 /* TaekwonTask.swift in Sources */,
+				2D6FDDE6290E15D4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */,
+				2D6FDDE3290E03F8002080B1 /* CoreDataController.swift in Sources */,
 				2D892B1E290C259A0073D3E5 /* DetailsView.swift in Sources */,
 				2D9F9CD5290A3A8500A12C25 /* TaekwonDoVC.swift in Sources */,
 				2D9F9CD9290A3BE900A12C25 /* NavBarView.swift in Sources */,
 				2D9F9CA5290A2EF800A12C25 /* TaekwonDo.xcdatamodeld in Sources */,
-				2D6FDDDC290DD5F4002080B1 /* CDTaekwonTask+CoreDataClass.swift in Sources */,
+				2D6FDDE7290E15D4002080B1 /* CDTaekwonTask+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

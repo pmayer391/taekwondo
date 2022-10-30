@@ -107,6 +107,7 @@ class DetailsView: UIView{
         let dueDate = dateFormatter.date(from: dueDateTextField.text ?? "")
         if currentTaskType != .edit{
             let newTask = TaekwonTask()
+            newTask.createdDate = Date()
             newTask.title = titleTextField.text ?? ""
             newTask.description = descriptionTextView.text
             newTask.dueDate = !((dueDateTextField.text ?? "").isEmpty) && (dueDate != nil) ? datePicker.date : nil

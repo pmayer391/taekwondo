@@ -14,7 +14,7 @@ class TaekwonDoVC: UIViewController {
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var emptyTaskListView: UIView!
     
-    private var allTasks: [TaekwonTask] = []
+    var allTasks: [TaekwonTask] = []
     
     enum SortOption: String{
         case RecentlyAdded = "Most Recent"
@@ -34,7 +34,7 @@ class TaekwonDoVC: UIViewController {
         taskTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 60, right: 0)
         navBarView.btnSort.addTarget(self, action: #selector(sortBtnPressed(_:)), for: .touchUpInside)
         navBarView.btnAddItem.addTarget(self, action: #selector(addTaskBtnPressed(_:)), for: .touchUpInside)
-        determineShowingEmptyTaskView()
+        showOrHideEmptyTaskView()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -108,7 +108,7 @@ class TaekwonDoVC: UIViewController {
         detailsView.showViewWithAnimation()
     }
     
-    func determineShowingEmptyTaskView(){
+    func showOrHideEmptyTaskView(){
         if allTasks.isEmpty{
             taskTableView.isHidden = true
             emptyTaskListView.isHidden = false
@@ -157,13 +157,18 @@ extension TaekwonDoVC: TaskCellDelegate{
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let strong = self else {return}
+            CoreDataController.shared.deleteTaskOnBackgroundThread(task)
             strong.allTasks.remove(at: indexPath.row)
-            strong.determineShowingEmptyTaskView()
+            strong.showOrHideEmptyTaskView()
             strong.taskTableView.reloadData()
         }
         alertVC.addAction(cancelAction)
         alertVC.addAction(deleteAction)
         self.navigationController?.present(alertVC, animated: true)
+    }
+    
+    func didTapOnCompleteBtn(task: TaekwonTask) {
+        CoreDataController.shared.editTaskOnBackgroundThread(task)
     }
 }
 
@@ -209,13 +214,15 @@ extension TaekwonDoVC: TaskCellDelegate{
 
 extension TaekwonDoVC: DetailsViewDelegate{
     func saveNewTask(task: TaekwonTask) {
+        CoreDataController.shared.saveNewTaskOnBackgroundThread(task)
         self.allTasks.append(task)
         self.taskTableView.reloadData()
-        self.determineShowingEmptyTaskView()
+        self.showOrHideEmptyTaskView()
         updateAddTaskBtn()
     }
     
     func editNewTask(task: TaekwonTask) {
+        CoreDataController.shared.editTaskOnBackgroundThread(task)
         self.taskTableView.reloadData()
     }
     

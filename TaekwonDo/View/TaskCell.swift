@@ -11,6 +11,7 @@ protocol TaskCellDelegate{
     func didTapOnEdit(task: TaekwonTask)
     func didTapOnCopy(task: TaekwonTask)
     func didTapOnDelete(task: TaekwonTask, indexPath: IndexPath)
+    func didTapOnCompleteBtn(task: TaekwonTask)
 }
 
 class TaskCell: UITableViewCell {
@@ -60,6 +61,9 @@ class TaskCell: UITableViewCell {
     
     @IBAction func completeBtnPressed(_ sender: Any) {
         currentTask.taskCompleted = !currentTask.taskCompleted
+        if let delegate = self.taskCellDelegate{
+            delegate.didTapOnCompleteBtn(task: currentTask)
+        }
         updateCellStatus(task: currentTask)
     }
     

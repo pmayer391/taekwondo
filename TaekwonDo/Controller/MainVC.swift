@@ -12,7 +12,15 @@ class MainVC: UIViewController {
     @IBOutlet weak var titleContainer: UIStackView!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var appIcon: UIImageView!
+    var tasks: [TaekwonTask] = []
     var topPadding: CGFloat = 0.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        CoreDataController.shared.fetchTasksOnBackground { tasks in
+            self.tasks = tasks
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,7 +50,9 @@ class MainVC: UIViewController {
                 strong.titleContainer.center = CGPoint(x: strong.titleContainer.center.x, y: 80 + strong.topPadding)
                 strong.titleLbl.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
             }, completion: { [weak self] _ in
-                self?.navigationController?.pushViewController(TaekwonDoVC(), animated: false)
+                let vc = TaekwonDoVC()
+                vc.allTasks = self?.tasks ?? []
+                self?.navigationController?.pushViewController(vc, animated: false)
             })
         })
     }

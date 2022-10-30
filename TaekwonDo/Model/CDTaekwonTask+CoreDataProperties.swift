@@ -20,6 +20,7 @@ extension CDTaekwonTask {
     @NSManaged public var taskDescription: String?
     @NSManaged public var taskDueDate: Date?
     @NSManaged public var taskCompleted: Bool
+    @NSManaged public var taskCreationDate: Date?
 
 }
 
