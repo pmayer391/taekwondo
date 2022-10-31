@@ -51,7 +51,7 @@ class MainVC: UIViewController {
                 strong.titleLbl.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
             }, completion: { [weak self] _ in
                 let vc = TaekwonDoVC()
-                vc.allTasks = self?.tasks ?? []
+                vc.viewModel.allTasks = self?.tasks ?? []
                 self?.navigationController?.pushViewController(vc, animated: false)
             })
         })

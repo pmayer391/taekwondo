@@ -15,32 +15,7 @@ class TaekwonDoVC: UIViewController {
     @IBOutlet weak var emptyTaskListView: UIView!
     @IBOutlet weak var lblEmptyTitle: UILabel!
     
-    var allTasks: [TaekwonTask] = []
-    var filteredTasks: [TaekwonTask] = []
-    var currentSortOption: SortOption = .RecentlyAdded
-    
-    enum SortOption: String, CaseIterable{
-        case RecentlyAdded = "Most Recent"
-        case DueToday = "Due Today"
-        case Completed = "Completed"
-        case Incomplete = "Incomplete"
-        case PastDue = "Past Due"
-        
-        func emptyTaskListTitle() -> String{
-            switch self{
-            case .RecentlyAdded:
-                return "Empty Task List"
-            case .DueToday:
-                return "There Are No More Tasks For Today"
-            case .Completed:
-                return "No Tasks Have Been Finished"
-            case .Incomplete:
-                return "All Tasks Are Complete"
-            case .PastDue:
-                return "There Are No Past Due Tasks"
-            }
-        }
-    }
+    var viewModel: TaekwonTaskViewModel = TaekwonTaskViewModel()
     
     //MARK: - Override Functions
     override func viewDidLoad() {
@@ -79,7 +54,7 @@ class TaekwonDoVC: UIViewController {
         
         if let navVC = self.navigationController{
             let sourceView = sender.convert(sender.bounds, to: navVC.view)
-            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 45 * CGFloat(SortOption.allCases.count), bgColor: tintColor, cornerRadias: 12, autoDismiss: true, addShadow: true)
+            let dropdown = DropDownView(sourceView: sourceView, customCellName: "", direction: .ArrowDown, maxWidth: 150, maxHeight: 45 * CGFloat(TaekwonTaskViewModel.SortOption.allCases.count), bgColor: tintColor, cornerRadias: 12, autoDismiss: true, addShadow: true)
             dropdown.delegate = self
             dropdown.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             dropdown.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
@@ -88,33 +63,8 @@ class TaekwonDoVC: UIViewController {
     }
     
     func sortList(){
-        lblHeader.text = currentSortOption.rawValue
-        filteredTasks = allTasks
-        switch currentSortOption{
-        case .RecentlyAdded:
-            filteredTasks = allTasks.sorted{$0.createdDate ?? Date() > $1.createdDate ?? Date()}
-        case .DueToday:
-            filteredTasks = allTasks.filter({
-                if let dueDate = $0.dueDate{
-                    return Calendar.current.isDateInToday(dueDate)
-                } else {
-                    return false
-                }
-            })
-        case .Completed:
-            filteredTasks = filteredTasks.filter({$0.taskCompleted})
-        case .Incomplete:
-            filteredTasks = filteredTasks.filter({!$0.taskCompleted})
-        case .PastDue:
-            filteredTasks = allTasks.filter({
-                let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
-                if let dueDate = $0.dueDate, dueDate > nextDay, !$0.taskCompleted{
-                    return true
-                } else {
-                    return false
-                }
-            })
-        }
+        viewModel.sortList()
+        lblHeader.text = viewModel.currentSortOption.rawValue
         taskTableView.reloadData()
         showOrHideEmptyTaskView()
     }
@@ -131,8 +81,8 @@ class TaekwonDoVC: UIViewController {
     }
     
     func showOrHideEmptyTaskView(){
-        lblEmptyTitle.text = currentSortOption.emptyTaskListTitle()
-        if filteredTasks.isEmpty{
+        lblEmptyTitle.text = viewModel.currentSortOption.emptyTaskListTitle()
+        if viewModel.filteredTasks.isEmpty{
             taskTableView.isHidden = true
             emptyTaskListView.isHidden = false
         } else {
@@ -145,12 +95,12 @@ class TaekwonDoVC: UIViewController {
 // MARK: - TableView Delegate and Data Methods
 extension TaekwonDoVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredTasks.count
+        return viewModel.filteredTasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-        cell.configureCell(filteredTasks[indexPath.row], indexPath, delegate: self)
+        cell.configureCell(viewModel.filteredTasks[indexPath.row], indexPath, delegate: self)
         cell.selectionStyle = .none
         return cell
     }
@@ -160,7 +110,7 @@ extension TaekwonDoVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = filteredTasks[indexPath.row]
+        let task = viewModel.filteredTasks[indexPath.row]
         task.cellExpanded = !task.cellExpanded
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
@@ -182,8 +132,8 @@ extension TaekwonDoVC: TaskCellDelegate{
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
             guard let strong = self else {return}
             CoreDataController.shared.deleteTaskOnBackgroundThread(task)
-            let removedTask = strong.filteredTasks.remove(at: indexPath.row)
-            strong.allTasks.removeAll(where: {$0.createdDate == removedTask.createdDate})
+            let removedTask = strong.viewModel.filteredTasks.remove(at: indexPath.row)
+            strong.viewModel.allTasks.removeAll(where: {$0.createdDate == removedTask.createdDate})
             strong.sortList()
             strong.taskTableView.reloadData()
         }
@@ -202,7 +152,7 @@ extension TaekwonDoVC: TaskCellDelegate{
 extension TaekwonDoVC: DetailsViewDelegate{
     func saveNewTask(task: TaekwonTask) {
         CoreDataController.shared.saveNewTaskOnBackgroundThread(task)
-        allTasks.append(task)
+        viewModel.allTasks.append(task)
         sortList()
         taskTableView.reloadData()
         updateAddTaskBtn()
@@ -230,11 +180,11 @@ extension TaekwonDoVC : DrowDownDelegate{
     
     func tableViewPopup(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let sortItem = SortOption.allCases[indexPath.row]
+        let sortItem = TaekwonTaskViewModel.SortOption.allCases[indexPath.row]
         let bgColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .black : .white
         let tintColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? .white : .black
         let selectedColor: UIColor = (traitCollection.userInterfaceStyle == .light) ? UIColor(named: "tdGold") ?? .yellow : UIColor(named: "tdBlue") ?? .blue
-        if sortItem == currentSortOption{
+        if sortItem == viewModel.currentSortOption{
             cell.textLabel?.textColor = selectedColor
         } else {
             cell.textLabel?.textColor = tintColor
@@ -247,11 +197,11 @@ extension TaekwonDoVC : DrowDownDelegate{
     }
     
     func tableViewPopup(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return SortOption.allCases.count
+        return TaekwonTaskViewModel.SortOption.allCases.count
     }
     
     func tableViewPopup(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentSortOption = SortOption.allCases[indexPath.row]
+        viewModel.currentSortOption = TaekwonTaskViewModel.SortOption.allCases[indexPath.row]
         sortList()
     }
     

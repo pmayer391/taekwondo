@@ -31,6 +31,7 @@
 		2D9F9CDA290A3BE900A12C25 /* NavBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */; };
 		2D9F9CDC290A3C9F00A12C25 /* TDImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CDB290A3C9F00A12C25 /* TDImageView.swift */; };
 		2D9F9CDE290A3D7C00A12C25 /* TDColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9F9CDD290A3D7C00A12C25 /* TDColors.swift */; };
+		2DAFC04F290F54FE00458254 /* TaekwonTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DAFC04E290F54FE00458254 /* TaekwonTaskViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavBarView.xib; sourceTree = "<group>"; };
 		2D9F9CDB290A3C9F00A12C25 /* TDImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImageView.swift; sourceTree = "<group>"; };
 		2D9F9CDD290A3D7C00A12C25 /* TDColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDColors.swift; sourceTree = "<group>"; };
+		2DAFC04E290F54FE00458254 /* TaekwonTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaekwonTaskViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,12 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				2D9C4A20290B0693008C88A9 /* DropDownView.swift */,
-				2D9F9CD7290A3BE900A12C25 /* NavBarView.swift */,
-				2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */,
-				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
-				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
-				2D892B1D290C259A0073D3E5 /* DetailsView.swift */,
-				2D892B1F290C25E40073D3E5 /* DetailsView.xib */,
+				2DAFC055290F6E6100458254 /* NavBar */,
+				2DAFC050290F6BA300458254 /* MainLaunch */,
+				2DAFC051290F6BB600458254 /* TaskList */,
+				2DAFC053290F6BDD00458254 /* TaskDetails */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -135,10 +135,6 @@
 			children = (
 				2D9F9CCD290A2FF000A12C25 /* NavController.swift */,
 				2D6FDDE2290E03F8002080B1 /* CoreDataController.swift */,
-				2D9F9CCF290A307300A12C25 /* MainVC.swift */,
-				2D9F9CD0290A307300A12C25 /* MainVC.xib */,
-				2D9F9CD3290A3A8500A12C25 /* TaekwonDoVC.swift */,
-				2D9F9CD4290A3A8500A12C25 /* TaekwonDoVC.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +182,53 @@
 				2D9F9CA3290A2EF800A12C25 /* TaekwonDo.xcdatamodeld */,
 			);
 			path = TaekwonDo;
+			sourceTree = "<group>";
+		};
+		2DAFC050290F6BA300458254 /* MainLaunch */ = {
+			isa = PBXGroup;
+			children = (
+				2D9F9CCF290A307300A12C25 /* MainVC.swift */,
+				2D9F9CD0290A307300A12C25 /* MainVC.xib */,
+			);
+			path = MainLaunch;
+			sourceTree = "<group>";
+		};
+		2DAFC051290F6BB600458254 /* TaskList */ = {
+			isa = PBXGroup;
+			children = (
+				2DAFC054290F6CB700458254 /* ViewModel */,
+				2D9F9CD3290A3A8500A12C25 /* TaekwonDoVC.swift */,
+				2D9F9CD4290A3A8500A12C25 /* TaekwonDoVC.xib */,
+				2D9C4A27290B2803008C88A9 /* TaskCell.swift */,
+				2D9C4A26290B2802008C88A9 /* TaskCell.xib */,
+			);
+			path = TaskList;
+			sourceTree = "<group>";
+		};
+		2DAFC053290F6BDD00458254 /* TaskDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2D892B1D290C259A0073D3E5 /* DetailsView.swift */,
+				2D892B1F290C25E40073D3E5 /* DetailsView.xib */,
+			);
+			path = TaskDetails;
+			sourceTree = "<group>";
+		};
+		2DAFC054290F6CB700458254 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2DAFC04E290F54FE00458254 /* TaekwonTaskViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2DAFC055290F6E6100458254 /* NavBar */ = {
+			isa = PBXGroup;
+			children = (
+				2D9F9CD7290A3BE900A12C25 /* NavBarView.swift */,
+				2D9F9CD8290A3BE900A12C25 /* NavBarView.xib */,
+			);
+			path = NavBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +370,7 @@
 				2D9F9CDC290A3C9F00A12C25 /* TDImageView.swift in Sources */,
 				2D9C4A21290B0693008C88A9 /* DropDownView.swift in Sources */,
 				2D9F9CCE290A2FF000A12C25 /* NavController.swift in Sources */,
+				2DAFC04F290F54FE00458254 /* TaekwonTaskViewModel.swift in Sources */,
 				2D9C4A1F290B027F008C88A9 /* TDUIView.swift in Sources */,
 				2D9F9CD1290A307300A12C25 /* MainVC.swift in Sources */,
 				2D9F9CDE290A3D7C00A12C25 /* TDColors.swift in Sources */,
