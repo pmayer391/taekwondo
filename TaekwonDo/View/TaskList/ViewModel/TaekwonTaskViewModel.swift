@@ -55,9 +55,16 @@ class TaekwonTaskViewModel{
             filteredTasks = filteredTasks.filter({!$0.taskCompleted})
         case .PastDue:
             filteredTasks = allTasks.filter({
-                let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Date()) ?? Date()
-                if let dueDate = $0.dueDate, dueDate > nextDay, !$0.taskCompleted{
-                    return true
+                if let dueDate = $0.dueDate{
+                    let currentDay = Calendar.current.startOfDay(for: Date())
+                    let dueDateStart: Date = Calendar.current.startOfDay(for: dueDate)
+                    let dateInfo = DateComponents(hour: 23, minute: 58, second: 0)
+                    let dueDateEnd = Calendar.current.date(byAdding: dateInfo, to: dueDateStart)
+                    if let dueDate = dueDateEnd, currentDay > dueDate, !$0.taskCompleted{
+                        return true
+                    }else {
+                        return false
+                    }
                 } else {
                     return false
                 }
